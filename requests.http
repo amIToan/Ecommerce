@@ -1,0 +1,28 @@
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+
+{
+    "username": "Shopnganxinh",
+    "email": "Shopnganxinh@gmail.com",
+    "password": "Shopnganxinh"
+}
+###
+POST http://localhost:5000/api/auth/login
+Content-Type: application/json
+
+{
+    "username": "Shopnganxinh",
+    "password": "Shopnganxinh"
+}
+
+###
+PUT  http://localhost:5000/api/users/6226e6ffb915844a1a311622
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6IjYyMjZlNmZmYjkxNTg0NGExYTMxMTYyMiIsImlzQWRtaW4iOmZhbHNlLCJpYXQiOjE2NDY3MjMxNDYsImV4cCI6MTY0Njk4MjM0Nn0.QKeCD6hjMf3ZrKu00iICADb2Z093vVvt1QNMzdrC9Ew
+
+
+{
+    "username": "Shopnganxinh11",
+    "password": "Shopnganxinh"
+}
