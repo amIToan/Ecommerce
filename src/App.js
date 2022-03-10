@@ -5,6 +5,12 @@ import Productpage from "./Pages/productPage";
 import Footer from "./components/footer";
 import Productdetails from "./Pages/ProductDetails";
 import Cart from "./Pages/Cart";
+import { render } from "react-dom";
+import {
+  BrowserRouter,
+  Routes,
+  Route,
+} from "react-router-dom";
 function App() {
   return (
     <>
@@ -13,12 +19,13 @@ function App() {
           <Navbar />
         </header>
       </div>
-      <div className="main-body">
-        <Home />
-        {/* <Productpage /> */}
-        {/* <Productdetails /> */}
-        {/* <Cart /> */}
-      </div>
+      <BrowserRouter>
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/categories" element={<Productpage />} />
+          <Route path="/products/:id" element={<Productdetails />} />
+        </Routes>
+      </BrowserRouter>
       <div>
         <Footer />
       </div>
