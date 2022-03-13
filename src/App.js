@@ -5,7 +5,9 @@ import Productpage from "./Pages/productPage";
 import Footer from "./components/footer";
 import Productdetails from "./Pages/ProductDetails";
 import Cart from "./Pages/Cart";
-import { render } from "react-dom";
+import Login from './Pages/Login';
+import Register from './Pages/register'
+
 import {
   BrowserRouter,
   Routes,
@@ -22,8 +24,13 @@ function App() {
       <BrowserRouter>
         <Routes>
           <Route path="/" element={<Home />} />
-          <Route path="/categories" element={<Productpage />} />
+          <Route path="/categories" element={<Productpage />} >
+            <Route path=":params" element={<Productpage />} />
+          </Route>
           <Route path="/products/:id" element={<Productdetails />} />
+          <Route path="/Cart" element={<Cart />} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/signup" element={<Register />} />
         </Routes>
       </BrowserRouter>
       <div>

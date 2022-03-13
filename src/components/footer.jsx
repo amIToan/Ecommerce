@@ -8,7 +8,7 @@ import {
   Pinterest,
   Room,
   Twitter,
-} from "@material-ui/icons";
+} from "@mui/icons-material";
 const Container = styled.div`
   display: flex;
   ${mobile({ flexDirection: "column" })}

@@ -1,7 +1,8 @@
+import { Add, Remove } from "@mui/icons-material";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Newsletter from "../components/Newsletter";
-import { Add, Remove } from "@material-ui/icons";
+
 import { mobile } from "../responsive";
 const Container = styled.div``;
 

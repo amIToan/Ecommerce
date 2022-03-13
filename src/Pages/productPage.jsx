@@ -1,3 +1,5 @@
+import { useState } from "react";
+import { useParams } from "react-router-dom";
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Products from "../components/Products";
@@ -29,6 +31,15 @@ const Select = styled.select`
 `;
 const Option = styled.option``;
 const Productpage = () => {
+  let { params } = useParams()
+  const [filter, setFilter] = useState({});
+  const handleFilters = (e) => {
+    setFilter({
+      ...filter,
+      [e.target.name]: e.target.value,
+    })
+  };
+  const [sort, setSort] = useState("Newest")
   return (
     <Container>
       <Announcement />
@@ -36,8 +47,8 @@ const Productpage = () => {
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
-          <Select>
-            <Option disabled selected>
+          <Select name="options" onChange={handleFilters}>
+            <Option disabled defaultValue>
               Color
             </Option>
             <Option>White</Option>
@@ -47,8 +58,8 @@ const Productpage = () => {
             <Option>Yellow</Option>
             <Option>Green</Option>
           </Select>
-          <Select>
-            <Option disabled selected>
+          <Select name="sizes" onChange={handleFilters}>
+            <Option disabled defaultValue>
               Size
             </Option>
             <Option>XS</Option>
@@ -60,14 +71,14 @@ const Productpage = () => {
         </Filter>
         <Filter>
           <FilterText>Sort Products:</FilterText>
-          <Select>
-            <Option selected>Newest</Option>
-            <Option>Price (asc)</Option>
-            <Option>Price (desc)</Option>
+          <Select name="sort" onChange={e => setSort(e.target.value)}>
+            <Option defaultValue value={"newest"}>Newest</Option>
+            <Option value={"asc"}>Price (asc)</Option>
+            <Option value={"desc"}>Price (desc)</Option>
           </Select>
         </Filter>
       </FilterContainer>
-      <Products />
+      <Products cat={params} filter={filter} sort={sort} />
     </Container>
   );
 };
