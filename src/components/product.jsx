@@ -4,10 +4,7 @@ import {
   SearchOutlined,
   ShoppingCartOutlined,
 } from "@mui/icons-material";
-<<<<<<< HEAD
-=======
 import { Link } from "react-router-dom";
->>>>>>> master
 const Info = styled.div`
   opacity: 0;
   width: 100%;
@@ -76,17 +73,11 @@ const Product = ({ item }) => {
         <Icon>
           <ShoppingCartOutlined />
         </Icon>
-<<<<<<< HEAD
-        <Icon>
-          <SearchOutlined />
-        </Icon>
-=======
         <Link to={`/products/${item._id}`}>
         <Icon>
           <SearchOutlined />
         </Icon>
         </Link>
->>>>>>> master
         <Icon>
           <FavoriteBorderOutlined />
         </Icon>

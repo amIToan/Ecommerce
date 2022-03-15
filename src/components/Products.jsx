@@ -1,8 +1,4 @@
 import Product from "./product";
-<<<<<<< HEAD
-import { popularProducts } from "../data";
-=======
->>>>>>> master
 import styled from "styled-components";
 import { useEffect, useState } from "react";
 import axios from 'axios'
@@ -13,25 +9,6 @@ const Container = styled.div`
   justify-content: space-between;
 `;
 const Products = ({cat, filter , sort}) => {
-<<<<<<< HEAD
-  const [products, setProducts] = useState([]);
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  useEffect( ()=> {
-    const getProducts = async()=> {
-      try {
-      const response = await axios.get("http://localhost:5000/api/products")
-      } catch (error) {
-        
-      }
-    }
-    getProducts();
-  },[cat, filter , sort])
-  return (
-    <Container>
-      {popularProducts.map((item) => (
-        <Product item={item} key={item.id} />
-      ))}
-=======
   console.log(filter)
   const [products, setProducts] = useState([]);
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -74,7 +51,6 @@ const Products = ({cat, filter , sort}) => {
       ) : products.slice(0,8).map( item => 
         <Product item={item} key={item._id} />
       )}
->>>>>>> master
     </Container>
   );
 };

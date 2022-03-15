@@ -36,16 +36,6 @@ const Productpage = () => {
   const handleFilters = (e) => {
     setFilter({
       ...filter,
-<<<<<<< HEAD
-      [e.target.name]: e.target.value,
-    })
-  };
-  const [sort, setSort] = useState("Newest")
-  return (
-    <Container>
-      <Announcement />
-      <Title>Dresses</Title>
-=======
       [e.target.name]: e.target.value.toLowerCase(),
     })
   };
@@ -54,16 +44,11 @@ const Productpage = () => {
     <Container>
       <Announcement />
       <Title>{params ? params : "Dresses"}</Title>
->>>>>>> master
       <FilterContainer>
         <Filter>
           <FilterText>Filter Products:</FilterText>
           <Select name="options" onChange={handleFilters}>
-<<<<<<< HEAD
-            <Option disabled defaultValue>
-=======
             <Option value={""} defaultValue>
->>>>>>> master
               Color
             </Option>
             <Option>White</Option>
@@ -74,11 +59,7 @@ const Productpage = () => {
             <Option>Green</Option>
           </Select>
           <Select name="sizes" onChange={handleFilters}>
-<<<<<<< HEAD
-            <Option disabled defaultValue>
-=======
             <Option value={""} defaultValue>
->>>>>>> master
               Size
             </Option>
             <Option>XS</Option>
@@ -90,11 +71,7 @@ const Productpage = () => {
         </Filter>
         <Filter>
           <FilterText>Sort Products:</FilterText>
-<<<<<<< HEAD
-          <Select name="sort" onChange={e => setSort(e.target.value)}>
-=======
           <Select name="sort" onChange={e => setSort(e.target.value.toLowerCase())}>
->>>>>>> master
             <Option defaultValue value={"newest"}>Newest</Option>
             <Option value={"asc"}>Price (asc)</Option>
             <Option value={"desc"}>Price (desc)</Option>

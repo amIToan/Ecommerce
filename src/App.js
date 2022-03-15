@@ -7,10 +7,6 @@ import Productdetails from "./Pages/ProductDetails";
 import Cart from "./Pages/Cart";
 import Login from './Pages/Login';
 import Register from './Pages/register'
-<<<<<<< HEAD
-
-=======
->>>>>>> master
 import {
   BrowserRouter,
   Routes,
