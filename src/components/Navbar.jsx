@@ -3,6 +3,11 @@ import styled from "styled-components";
 import { Search, ShoppingCartOutlined } from "@mui/icons-material";
 import { Badge } from "@mui/material";
 import { mobile } from "../responsive";
+<<<<<<< HEAD
+=======
+import { useSelector } from "react-redux";
+import { Link } from "react-router-dom";
+>>>>>>> master
 const Container = styled.div`
   height: 60px;
   ${mobile({ height: "50px" })}
@@ -56,6 +61,11 @@ const MenuItem = styled.div`
   ${mobile({ fontSize: "12px", marginLeft: "10px" })}
 `;
 const Navbar = () => {
+<<<<<<< HEAD
+=======
+  const Quantity = useSelector( state => state.cart.quantity)
+  console.log(Quantity)
+>>>>>>> master
   return (
     <Container>
       <Wrapper>
@@ -72,11 +82,21 @@ const Navbar = () => {
         <Right>
           <MenuItem>Register</MenuItem>
           <MenuItem>Login</MenuItem>
+<<<<<<< HEAD
           <MenuItem>
             <Badge color="secondary" badgeContent={0} showZero>
               <ShoppingCartOutlined />
             </Badge>
           </MenuItem>
+=======
+          <Link to="/Cart">
+            <MenuItem>
+            <Badge color="secondary" badgeContent={Quantity} showZero>
+              <ShoppingCartOutlined />
+            </Badge>
+          </MenuItem>
+          </Link>
+>>>>>>> master
         </Right>
       </Wrapper>
     </Container>

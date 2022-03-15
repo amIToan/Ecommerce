@@ -1,9 +1,21 @@
 import { Add, Remove } from "@mui/icons-material";
+<<<<<<< HEAD
+=======
+import { useSelector } from "react-redux";
+>>>>>>> master
 import styled from "styled-components";
 import Announcement from "../components/Announcement";
 import Newsletter from "../components/Newsletter";
 import { mobile } from "../responsive";
+<<<<<<< HEAD
 
+=======
+import StripeCheckout from "react-stripe-checkout";
+import { useEffect, useState } from "react";
+import { userRequest } from "../requestMethod";
+import { useNavigate } from "react-router-dom";
+const KEY = process.env.STRIPR_TOKEN;
+>>>>>>> master
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 20px;
@@ -150,6 +162,28 @@ const Button = styled.button`
   font-weight: 600;
 `;
 const Cart = () => {
+<<<<<<< HEAD
+=======
+  let Navigate = useNavigate();
+  const Cart = useSelector((state) => state.cart);
+  const [stripeToken, setStrikeToken] = useState(null);
+  const onToken = (token) => {
+    setStrikeToken(token);
+  };
+  useEffect(() => {
+    const cartRequest = async () => {
+      try {
+        const res = await userRequest.post("/checkout/payment", {
+          tokenId: stripeToken.id,
+          amount: Cart.total * 100,
+        });
+        console.log(res);
+        Navigate("/success", { data: res.data });
+      } catch (error) {}
+    };
+    stripeToken && Cart.total >= 1 && cartRequest();
+  }, [stripeToken, Cart.total]);
+>>>>>>> master
   return (
     <Container>
       <Announcement />
@@ -165,6 +199,7 @@ const Cart = () => {
         </Top>
         <Bottom>
           <Info>
+<<<<<<< HEAD
             <Product>
               <ProductDetail>
                 <Image src="https://hips.hearstapps.com/vader-prod.s3.amazonaws.com/1614188818-TD1MTHU_SHOE_ANGLE_GLOBAL_MENS_TREE_DASHERS_THUNDER_b01b1013-cd8d-48e7-bed9-52db26515dc4.png?crop=1xw:1.00xh;center,top&resize=480%3A%2A" />
@@ -243,6 +278,40 @@ const Cart = () => {
               </PriceDetail>
             </Product>
             <Hr />
+=======
+            {Cart.products.map((product) => (
+              <>
+                <Product>
+                  <ProductDetail>
+                    <Image src={product.img} />
+                    <Details>
+                      <ProductName>
+                        <b>Product:</b> {product.title}
+                      </ProductName>
+                      <ProductId>
+                        <b>ID:</b> 93813718293
+                      </ProductId>
+                      <ProductColor color={product.color} />
+                      <ProductSize>
+                        <b>Size:</b> {product.size}
+                      </ProductSize>
+                    </Details>
+                  </ProductDetail>
+                  <PriceDetail>
+                    <ProductAmountContainer>
+                      <Add />
+                      <ProductAmount>{product.quantity}</ProductAmount>
+                      <Remove />
+                    </ProductAmountContainer>
+                    <ProductPrice>
+                      {product.quantity * product.price}
+                    </ProductPrice>
+                  </PriceDetail>
+                </Product>
+                <Hr />
+              </>
+            ))}
+>>>>>>> master
           </Info>
           <Summary>
             <SummaryTitle>ORDER SUMMARY</SummaryTitle>
@@ -260,9 +329,47 @@ const Cart = () => {
             </SummaryItem>
             <SummaryItem type="total">
               <SummaryItemText>Total</SummaryItemText>
+<<<<<<< HEAD
               <SummaryItemPrice>$ 80</SummaryItemPrice>
             </SummaryItem>
             <Button>CHECKOUT NOW</Button>
+=======
+              <SummaryItemPrice>{Cart.total}</SummaryItemPrice>
+            </SummaryItem>
+            <StripeCheckout
+              name="Three Comma Co." // the pop-in header title
+              description="Big Data Stuff" // the pop-in header subtitle
+              image="https://www.vidhub.co/assets/logos/vidhub-icon-2e5c629f64ced5598a56387d4e3d0c7c.png" // the pop-in header image (default none)
+              ComponentClass="div"
+              panelLabel="Give Money" // prepended to the amount in the bottom pay button
+              amount={Cart.total * 100} // cents
+              currency="USD"
+              email="info@vidhub.co"
+              // Note: Enabling either address option will give the user the ability to
+              // fill out both. Addresses are sent as a second parameter in the token callback.
+              shippingAddress
+              billingAddress={false}
+              // Note: enabling both zipCode checks and billing or shipping address will
+              // cause zipCheck to be pulled from billing address (set to shipping if none provided).
+              alipay // accept Alipay (default false)
+              bitcoin // accept Bitcoins (default false)
+              allowRememberMe // "Remember Me" option (default true)
+              token={this.onToken} // submit callback
+              opened={this.onOpened} // called when the checkout popin is opened (no IE6/7)
+              closed={this.onClosed} // called when the checkout popin is closed (no IE6/7)
+              // Note: `reconfigureOnUpdate` should be set to true IFF, for some reason
+              // you are using multiple stripe keys
+              reconfigureOnUpdate={false}
+              // Note: you can change the event to `onTouchTap`, `onClick`, `onTouchStart`
+              // useful if you're using React-Tap-Event-Plugin
+              triggerEvent="onTouchTap"
+            >
+              <button className="btn btn-primary">
+                Use your own child component, which gets wrapped in whatever
+                component you pass into as "ComponentClass" (defaults to span)
+              </button>
+            </StripeCheckout>
+>>>>>>> master
           </Summary>
         </Bottom>
       </Wrapper>
