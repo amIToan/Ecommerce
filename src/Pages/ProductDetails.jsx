@@ -112,35 +112,45 @@ const Button = styled.button`
   }
 `;
 const Productdetails = () => {
-  let { id } = useParams()
+  let { id } = useParams();
   const [product, setProduct] = useState({});
-  useEffect( ()=> {
-    const getAllProducts = async() => {
+  useEffect(() => {
+    const getAllProducts = async () => {
       try {
-        const response = await pubblicRequest.get("/products/find/"+id)
-        setProduct(response.data)
-        console.log(response.data)
+        const response = await pubblicRequest.get("/products/find/" + id);
+        setProduct(response.data);
+        console.log(response.data);
       } catch (error) {
-        console.log(error)
+        console.log(error);
       }
-    }
+    };
     getAllProducts();
-  },[id]);
+    return () => {
+      setProduct({});
+    };
+  }, [id]);
   const [quantity, setQuantity] = useState(1);
-  const handleQuantity = (param)=>{
+  const handleQuantity = (param) => {
     if (param == "des") {
-      quantity > 1 && setQuantity(quantity-1)
-      return
+      quantity > 1 && setQuantity(quantity - 1);
+      return;
     } else {
-      setQuantity(quantity+1)
+      setQuantity(quantity + 1);
     }
-  }
+  };
   const [selectedColor, setselectedColor] = useState(null);
   const [selectedSize, setselectedSize] = useState(null);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleAddToCart = () => {
-    dispatch(addProduct({...product, quantity, color: selectedColor, size : selectedSize}))
-  }
+    dispatch(
+      addProduct({
+        ...product,
+        quantity,
+        color: selectedColor,
+        size: selectedSize,
+      })
+    );
+  };
   return (
     <Container>
       <Announcement />
@@ -150,29 +160,41 @@ const Productdetails = () => {
         </ImgContainer>
         <InfoContainer>
           <Title>{product.title && product.title}</Title>
-          <Desc>
-            {product.desc && product.desc}
-          </Desc>
+          <Desc>{product.desc && product.desc}</Desc>
           <Price>$ 20</Price>
           <FilterContainer>
             <Filter>
               <FilterTitle>Color</FilterTitle>
-              {product.color &&  product.color.length > 0 && product.color.map( c => <FilterColor color={c} key={c} onClick={()=> setselectedColor(c)}/>)}
+              {product.color &&
+                product.color.length > 0 &&
+                product.color.map((c) => (
+                  <FilterColor
+                    color={c}
+                    key={c}
+                    onClick={() => setselectedColor(c)}
+                  />
+                ))}
             </Filter>
             <Filter>
               <FilterTitle>Size</FilterTitle>
-              <FilterSize onChange={ (e) => setselectedSize(e.target.value) }>
-                { product.size && product.size.length > 0 && product.size.map( s => <FilterSizeOption color={s} key={s}>{s}</FilterSizeOption >)}
+              <FilterSize onChange={(e) => setselectedSize(e.target.value)}>
+                {product.size &&
+                  product.size.length > 0 &&
+                  product.size.map((s) => (
+                    <FilterSizeOption color={s} key={s}>
+                      {s}
+                    </FilterSizeOption>
+                  ))}
               </FilterSize>
             </Filter>
           </FilterContainer>
           <AddContainer>
             <AmountContainer>
-              <Remove onClick={ ()=> handleQuantity("des")}/>
+              <Remove onClick={() => handleQuantity("des")} />
               <Amount>{quantity}</Amount>
-              <Add onClick={ ()=> handleQuantity()}/>
+              <Add onClick={() => handleQuantity()} />
             </AmountContainer>
-            <Button onClick={()=> handleAddToCart()}>ADD TO CART</Button>
+            <Button onClick={() => handleAddToCart()}>ADD TO CART</Button>
           </AddContainer>
         </InfoContainer>
       </Wrapper>
