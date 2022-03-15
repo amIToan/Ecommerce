@@ -8,7 +8,7 @@ import StripeCheckout from "react-stripe-checkout";
 import { useEffect, useState } from "react";
 import { userRequest } from "../requestMethod";
 import { useNavigate } from "react-router-dom";
-const KEY = process.env.STRIPR_TOKEN;
+const KEY = process.env.REACT_APP_STRIPE_TOKEN;
 const Container = styled.div``;
 const Wrapper = styled.div`
   padding: 20px;
@@ -155,6 +155,7 @@ const Button = styled.button`
   font-weight: 600;
 `;
 const Cart = () => {
+  console.log(KEY);
   let Navigate = useNavigate();
   const Cart = useSelector((state) => state.cart);
   const [stripeToken, setStrikeToken] = useState(null);
